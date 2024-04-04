@@ -1,0 +1,10 @@
+{
+  "keywordFileContentHash": "C0F34811507C85F6DC7EB49CC178C2C5",
+  "keywordClasses": [
+    {
+      "name": "dataParser.DataParser",
+      "keywordMethods": []
+    }
+  ],
+  "javadocParsed": true
+}

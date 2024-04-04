@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description></description>
+   <name>NavigationToTabs</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>182d5dbd-5c4a-4fc4-b56d-455c25b2fd59</testCaseGuid>
+   <variableLinks>
+      <testDataLinkId></testDataLinkId>
+      <type>DEFAULT</type>
+      <value></value>
+      <variableId>c580ad18-18ae-4a02-8aac-5a61ff43ccc4</variableId>
+   </variableLinks>
+   <variable>
+      <defaultValue>''</defaultValue>
+      <description></description>
+      <id>c580ad18-18ae-4a02-8aac-5a61ff43ccc4</id>
+      <masked>false</masked>
+      <name>option</name>
+   </variable>
+</TestCaseEntity>

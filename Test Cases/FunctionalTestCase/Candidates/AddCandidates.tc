@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description></description>
+   <name>AddCandidates</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>8c3bf451-9652-48af-acaa-3e21caa8451d</testCaseGuid>
+   <variableLinks>
+      <testDataLinkId></testDataLinkId>
+      <type>DEFAULT</type>
+      <value></value>
+      <variableId>c86183ef-b9f4-4139-bb35-8343fe8bdef9</variableId>
+   </variableLinks>
+   <variable>
+      <defaultValue>''</defaultValue>
+      <description></description>
+      <id>c86183ef-b9f4-4139-bb35-8343fe8bdef9</id>
+      <masked>false</masked>
+      <name>candidateName</name>
+   </variable>
+</TestCaseEntity>
