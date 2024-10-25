@@ -27,7 +27,7 @@ CandidateLocators locate = new CandidateLocators()
 BaseClass commons = new BaseClass()
 DataParser data = new DataParser()
 String empty = ''
-Map candidateData = data.candidateData(${candidateName})
+Map candidateData = data.candidateData("${candidateName}")
 WebUI.click(locate.btnAddCandidate())
 WebUI.sendKeys(locate.inputFirstName(), candidateData.get('FirstName'))
 WebUI.sendKeys(locate.inputLinkedProfile(), candidateData.get('LinkedProfile'))

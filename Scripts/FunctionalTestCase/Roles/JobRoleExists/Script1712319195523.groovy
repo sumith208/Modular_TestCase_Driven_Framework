@@ -11,39 +11,29 @@ import com.kms.katalon.core.testcase.TestCase as TestCase
 import com.kms.katalon.core.testdata.TestData as TestData
 import com.kms.katalon.core.testng.keyword.TestNGBuiltinKeywords as TestNGKW
 import com.kms.katalon.core.testobject.TestObject as TestObject
-import com.kms.katalon.core.util.KeywordUtil as KeywordUtil
 import com.kms.katalon.core.webservice.keyword.WSBuiltInKeywords as WS
 import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
-import dataParser.DataParser as DataParser
-import internal.GlobalVariable as GlobalVariable
-import locatorRepo.RolesLocators as RolesLocators
-import techScore.BaseClass as BaseClass
-import techScore.Home as Home
+import internal.GlobalVariable
+import locatorRepo.RolesLocators
+import techScore.BaseClass
+import com.kms.katalon.core.util.KeywordUtil
+
 import org.openqa.selenium.Keys as Keys
 
-RolesLocators locate = new RolesLocators()
-
+RolesLocators locators = new RolesLocators()
 BaseClass commons = new BaseClass()
+String Role = "$RoleName"
+String ErrorMessage = "$ErrorMessage"
+WebUI.click(locators.btnCreateRole())
+WebUI.click(locators.drpJobDescription())
+commons.dropdown(locators.listJobDescriptions(), Role)
+WebUI.click(locators.btnGenerateProfile())
+String errMessage = WebUI.getText(locators.txtErrorMessage())
 
-DataParser data = new DataParser()
-
-String empty = ''
-Map rolesData = data.rolesData("${roleName}")
-WebUI.click(locate.btnAddRoles())
-
-if (rolesData.get('RoleType') != empty) {
-    WebUI.click(locate.drpJobDescription())
-
-    commons.dropdown(locate.listJobDescriptions(), rolesData.get('RoleType'))
-} else {
-    KeywordUtil.logInfo('Job Type is not provided')
+if(errMessage.equals(ErrorMessage)) {
+	KeywordUtil.markPassed("Job Role Already Exists")
 }
-
-if (rolesData.get('JobDescription') != empty) {
-    WebUI.setText(locate.inputJobDescription(), rolesData.get('JobDescription'))
-} else {
-    KeywordUtil.logInfo('There is no job description provided')
+else {
+	KeywordUtil.markPassed("Job Role Not Exists")
 }
-
-WebUI.click(locate.btnGenerateProfile())

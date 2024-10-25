@@ -24,4 +24,4 @@ HomePageLocators locate = new HomePageLocators()
 
 BaseClass commons = new BaseClass()
 
-commons.dropdown(locate.listNavTabs(), ${option})
+commons.dropdown(locate.listNavTabs(), "${option}")

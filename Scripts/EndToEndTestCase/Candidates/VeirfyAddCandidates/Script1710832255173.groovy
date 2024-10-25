@@ -10,4 +10,3 @@ WebUI.callTestCase(findTestCase('FunctionalTestCase/Home/NavigationToTabs'), [('
 WebUI.callTestCase(findTestCase('FunctionalTestCase/Candidates/AddCandidates'), [('candidateName') : 'TestUser1'], FailureHandling.STOP_ON_FAILURE)
 
 WebUI.callTestCase(findTestCase('FunctionalTestCase/Home/LogOut'), [:], FailureHandling.STOP_ON_FAILURE)
-

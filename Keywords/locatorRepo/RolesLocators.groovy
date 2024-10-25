@@ -36,4 +36,34 @@ public class RolesLocators {
 	def listJobDescriptions(){
 		return findTestObject('Object Repository/Page_Roles/listJobDescriptions')
 	}
+	def btnRoles(){
+		return findTestObject('Object Repository/Page_Roles/btnRoles')
+	}
+	def rowRoleName(String RoleName){
+		return findTestObject('Object Repository/Page_Roles/rowRoleName',[roleName:RoleName])
+	}
+	def txtRoleName(){
+		return findTestObject('Object Repository/Page_Roles/txtRoleName')
+	}
+	def btnDeactivateRole(){
+		return findTestObject('Object Repository/Page_Roles/btnDeactivateRole')
+	}
+	def inputDeactivationReason(){
+		return findTestObject('Object Repository/Page_Roles/inputDeactivationReason')
+	}
+	def btnReasonDeactivation(){
+		return findTestObject('Object Repository/Page_Roles/btnReasonDeactivation')
+	}
+	def txtStatus(){
+		return findTestObject('Object Repository/Page_Roles/txtStatus')
+	}
+	def inputSearchBox(){
+		return findTestObject('Object Repository/Page_Roles/inputSearchBox')
+	}
+	def btnCreateRole(){
+		return findTestObject('Object Repository/Page_Roles/btnCreateRole')
+	}
+	def txtErrorMessage(){
+		return findTestObject('Object Repository/Page_Roles/txtErrorMessage')
+	}
 }

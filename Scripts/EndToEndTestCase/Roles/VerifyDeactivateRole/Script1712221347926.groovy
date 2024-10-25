@@ -11,39 +11,11 @@ import com.kms.katalon.core.testcase.TestCase as TestCase
 import com.kms.katalon.core.testdata.TestData as TestData
 import com.kms.katalon.core.testng.keyword.TestNGBuiltinKeywords as TestNGKW
 import com.kms.katalon.core.testobject.TestObject as TestObject
-import com.kms.katalon.core.util.KeywordUtil as KeywordUtil
 import com.kms.katalon.core.webservice.keyword.WSBuiltInKeywords as WS
 import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
-import dataParser.DataParser as DataParser
 import internal.GlobalVariable as GlobalVariable
-import locatorRepo.RolesLocators as RolesLocators
-import techScore.BaseClass as BaseClass
-import techScore.Home as Home
 import org.openqa.selenium.Keys as Keys
 
-RolesLocators locate = new RolesLocators()
-
-BaseClass commons = new BaseClass()
-
-DataParser data = new DataParser()
-
-String empty = ''
-Map rolesData = data.rolesData("${roleName}")
-WebUI.click(locate.btnAddRoles())
-
-if (rolesData.get('RoleType') != empty) {
-    WebUI.click(locate.drpJobDescription())
-
-    commons.dropdown(locate.listJobDescriptions(), rolesData.get('RoleType'))
-} else {
-    KeywordUtil.logInfo('Job Type is not provided')
-}
-
-if (rolesData.get('JobDescription') != empty) {
-    WebUI.setText(locate.inputJobDescription(), rolesData.get('JobDescription'))
-} else {
-    KeywordUtil.logInfo('There is no job description provided')
-}
-
-WebUI.click(locate.btnGenerateProfile())
+WebUI.callTestCase(findTestCase('FunctionalTestCase/Home/Login'), ["Url":GlobalVariable.TECHSCOREURL,"UserName":GlobalVariable.USERNAME, "Password":GlobalVariable.PASSWORD], FailureHandling.STOP_ON_FAILURE)
+WebUI.callTestCase(findTestCase('FunctionalTestCase/Roles/DeactivateRole'), ["RoleName":"Data Analyst","Reason":"Not Necessary","Status":"Inactive"],FailureHandling.STOP_ON_FAILURE)

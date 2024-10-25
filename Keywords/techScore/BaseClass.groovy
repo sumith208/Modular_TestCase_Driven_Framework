@@ -20,17 +20,18 @@ import com.kms.katalon.core.testobject.TestObject
 import com.kms.katalon.core.util.KeywordUtil
 import com.kms.katalon.core.webui.common.WebUiCommonHelper
 import com.kms.katalon.core.webui.driver.DriverFactory
+import com.kms.katalon.core.webui.exception.BrowserNotOpenedException
 import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 
 import internal.GlobalVariable
 
 /**
  * This Class consist of all the functional common keywords independent on locators. These keywords are not dependent on UI.
- * @author Srivachan A
+ * 
  *
  */
 public class BaseClass extends GlobalVariable {
-	
+
 	/**
 	 * This Keyword is to launch a url and maximize the window
 	 * @param url is application needs to be launched
@@ -83,26 +84,53 @@ public class BaseClass extends GlobalVariable {
 	 * @param expected is the expected text
 	 * @return boolean
 	 */
+	//	@Keyword
+	//	def verifyText(TestObject element, String expected ) {
+	//		try {
+	//			String messageText = WebUI.getText(element)
+	//			boolean value = messageText.equals(expected)
+	//			if (value) {
+	//				KeywordUtil.logInfo("The Prompt is present as expected as "+messageText)
+	//				return true
+	//			} else if (messageText == null) {
+	//				KeywordUtil.logInfo("Has no Error Prompt ")
+	//				return false
+	//			} else {
+	//				KeywordUtil.logInfo("Expected prompt:- "+ expected +" Actual prompt:- "+ messageText)
+	//				return false
+	//			}
+	//		} catch (Exception e) {
+	//			e.printStackTrace()
+	//			KeywordUtil.logInfo(e.message)
+	//		}
+	//	}
+
 	@Keyword
-	def verifyText(TestObject element, String expected ) {
+	def verifyText(TestObject element, String expected) {
 		try {
+			// Retrieve the text from the web element
 			String messageText = WebUI.getText(element)
-			boolean value = messageText.equals(expected)
-			if (value) {
-				KeywordUtil.logInfo("The Prompt is present as expected as "+messageText)
-				return true
-			} else if (messageText == null) {
-				KeywordUtil.logInfo("Has no Error Prompt ")
+
+			// Check if the retrieved text is null or empty
+			if (messageText == null || messageText.isEmpty()) {
+				KeywordUtil.logInfo("No text found in the element.")
 				return false
+			}
+
+			// Compare the retrieved text with the expected text
+			if (messageText.equals(expected)) {
+				KeywordUtil.logInfo("Text verification successful. Found: " + messageText)
+				return true
 			} else {
-				KeywordUtil.logInfo("Expected prompt:- "+ expected +" Actual prompt:- "+ messageText)
+				KeywordUtil.logInfo("Text verification failed. Expected: " + expected + ", Found: " + messageText)
 				return false
 			}
 		} catch (Exception e) {
-			e.printStackTrace()
-			KeywordUtil.logInfo(e.message)
+			KeywordUtil.logInfo("Exception occurred during text verification: " + e.message)
+			return false
 		}
 	}
+
 
 	/**
 	 * This Keyword is to generate a random four digit number and convert that into a String value
@@ -110,7 +138,8 @@ public class BaseClass extends GlobalVariable {
 	 */
 	def String generateRandomCode() {
 		Random rand = new Random();
-		int rand_int1 = rand.nextInt(2000)
+		//		int rand_int1 = rand.nextInt(2000)
+		int rand_int1 = 1000 + rand.nextInt(9000); // Generates a random number between 1000 and 8999
 		String randomCode = (rand_int1).toString()
 		return randomCode
 	}
@@ -317,7 +346,7 @@ public class BaseClass extends GlobalVariable {
 			return false
 		}
 	}
-	
+
 	/**
 	 * To get index of row from sheet data
 	 * @param input
@@ -330,7 +359,7 @@ public class BaseClass extends GlobalVariable {
 			return 1
 		}
 	}
-	
+
 	/**
 	 * This method automates navigating to current tab.
 	 * @return boolean
@@ -362,7 +391,7 @@ public class BaseClass extends GlobalVariable {
 			e.printStackTrace()
 		}
 	}
-	
+
 	/**
 	 * This keyword is to clear text of the field
 	 * @param locator of the element needs cleared

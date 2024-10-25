@@ -1,5 +1,5 @@
 {
-  "keywordFileContentHash": "6EA1CC188F494895758A5494FDE1DBB3",
+  "keywordFileContentHash": "714D160C7C0247C2CF2078051F043057",
   "keywordClasses": [
     {
       "name": "techScore.BaseClass",
@@ -85,7 +85,7 @@
               }
             }
           ],
-          "javadoc": "/**\r\n\t * This Keyword is to get the text from the web element and compare with provided value\r\n\t * @param element is the locator of the text web element\r\n\t * @param expected is the expected text\r\n\t * @param expected is the expected text\r\n\t * @return boolean\r\n\t */"
+          "javadoc": ""
         },
         {
           "name": "getExportedData",

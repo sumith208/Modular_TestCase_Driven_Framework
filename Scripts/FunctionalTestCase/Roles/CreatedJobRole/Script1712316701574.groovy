@@ -11,39 +11,41 @@ import com.kms.katalon.core.testcase.TestCase as TestCase
 import com.kms.katalon.core.testdata.TestData as TestData
 import com.kms.katalon.core.testng.keyword.TestNGBuiltinKeywords as TestNGKW
 import com.kms.katalon.core.testobject.TestObject as TestObject
-import com.kms.katalon.core.util.KeywordUtil as KeywordUtil
 import com.kms.katalon.core.webservice.keyword.WSBuiltInKeywords as WS
 import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
-import dataParser.DataParser as DataParser
-import internal.GlobalVariable as GlobalVariable
-import locatorRepo.RolesLocators as RolesLocators
-import techScore.BaseClass as BaseClass
-import techScore.Home as Home
+import internal.GlobalVariable
+import locatorRepo.RolesLocators
+import com.kms.katalon.core.util.KeywordUtil
+
+
 import org.openqa.selenium.Keys as Keys
 
-RolesLocators locate = new RolesLocators()
 
-BaseClass commons = new BaseClass()
+String role = "$RoleName"
+String StatusVar = "$Status"
 
-DataParser data = new DataParser()
+RolesLocators locators = new RolesLocators()
+WebUI.click(locators.btnRoles())
+WebUI.sendKeys(locators.inputSearchBox(), role)
+WebUI.click(locators.rowRoleName(role))
+WebUI.switchToWindowIndex(1);
+String roles = WebUI.getText(locators.txtRoleName())
 
-String empty = ''
-Map rolesData = data.rolesData("${roleName}")
-WebUI.click(locate.btnAddRoles())
 
-if (rolesData.get('RoleType') != empty) {
-    WebUI.click(locate.drpJobDescription())
-
-    commons.dropdown(locate.listJobDescriptions(), rolesData.get('RoleType'))
-} else {
-    KeywordUtil.logInfo('Job Type is not provided')
+if(roles.contains(role)) {
+	KeywordUtil.markPassed("Navigated Succesfully to Role Page")
+}
+else {
+	KeywordUtil.markFailed("Not Navigated Succesfully to Role Page")
 }
 
-if (rolesData.get('JobDescription') != empty) {
-    WebUI.setText(locate.inputJobDescription(), rolesData.get('JobDescription'))
-} else {
-    KeywordUtil.logInfo('There is no job description provided')
-}
+String Status = WebUI.getText(locators.txtStatus())
 
-WebUI.click(locate.btnGenerateProfile())
+if(Status.equals(StatusVar)) {
+	KeywordUtil.markPassed("Roles Created Sucessfully")
+}
+else {
+	KeywordUtil.markFailed("Not Deactivated Sucessfully")
+	
+}

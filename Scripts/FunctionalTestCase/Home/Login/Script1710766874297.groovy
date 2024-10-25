@@ -22,10 +22,10 @@ import org.openqa.selenium.Keys as Keys
 
 HomePageLocators locate = new HomePageLocators()
 BaseClass commons = new BaseClass()
-String url =${Url}
+String url = "${Url}"
 
-String userName = ${UserName}
-String password = ${Password}
+String userName = "${UserName}"
+String password = "${Password}"
 commons.launchApplication(url)
 WebUI.sendKeys(locate.inputUserEmail(),userName)
 WebUI.sendKeys(locate.inputPassword(),password)
